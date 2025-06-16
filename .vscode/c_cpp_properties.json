@@ -1,0 +1,39 @@
+{
+    "configurations": [
+        {
+            "name": "ESP-IDF",
+            "compilerPath": "${config:idf.toolsPath}/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+            "includePath": [
+                "${config:idf.espIdfPath}/components/**",
+                "${config:idf.espIdfPath}/components/freertos",
+                "${config:idf.espIdfPath}/components/esp_common/include",
+                "${config:idf.espIdfPath}/components/esp_hw_support/include",
+                "${config:idf.espIdfPath}/components/esp_system/include",
+                "${config:idf.espIdfPath}/components/esp_driver_spi/include",
+                "${config:idf.espIdfPath}/components/esp_driver_gpio/include",
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/components/Adafruit_GFX_Library",
+                "${workspaceFolder}/components/Adafruit_ST7789_Library",
+                "${workspaceFolder}/components/Adafruit_BusIO",
+                "${workspaceFolder}/components/RFM95Lora",
+                "${workspaceFolder}/main",
+                "${workspaceFolder}/components/**"
+            ],
+            "browse": {
+                "path": [
+                    "${config:idf.espIdfPath}/components",
+                    "${workspaceFolder}",
+                    "${workspaceFolder}/components/Adafruit_GFX_Library",
+                    "${workspaceFolder}/components/Adafruit_ST7789_Library",
+                    "${workspaceFolder}/components/Adafruit_BusIO",
+                    "${workspaceFolder}/components/RFM95Lora",
+                    "${workspaceFolder}/components/**"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}

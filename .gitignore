@@ -1,0 +1,18 @@
+build/
+# Ignore all files under the arduino directory
+arduino/*
+
+# Allow the arduino directory itself to stay in the repository
+!arduino/
+# Optionally, allow .gitkeep to keep the directory
+!arduino/.gitkeep
+
+# Ignore all files under the docs directory
+docs/*
+
+# Allow the docs directory itself and ESP32LoraPrototype.jpg
+!docs/
+!docs/ESP32LoraPrototype.jpg
+
+# Optionally, allow .gitkeep to keep the directory
+!docs/.gitkeep
