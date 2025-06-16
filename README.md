@@ -133,4 +133,4 @@ Ensure that the wiring matches the pin definitions in `Config.h` and that the co
 
 ## License
 
-This project is licensed under the LGPL-3.0-or-later license. See the individual source files for more details.
+This project is licensed under the LGPL-2.1-or-later license. See the individual source files for more details.
