@@ -4,6 +4,10 @@
 
 The purpose of this project is to enable remote data retrieval using LoRa communication and deliver the data to a Bluetooth-connected phone. The project supports various sensors, including temperature, humidity, and relay control. Commands are sent from a Bluetooth serial terminal on the phone to the LoRa sender, which communicates with the LoRa receiver to fetch the requested data.
 
+📖 **Related Blog Post**  
+A comprehensive article describing the architecture, use cases, and implementation details of this project is available on Medium:  
+🔗 [ESP32LORA: A Remote Wireless Communication Platform Using LoRa and Bluetooth](https://medium.com/@ardatekin78/esp32lora-a-remote-wireless-communication-platform-using-lora-and-bluetooth-91e3595d11c0)
+
 ---
 
 ## Prerequisites
