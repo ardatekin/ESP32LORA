@@ -36,6 +36,12 @@ class SHT3X; // Forward declaration of SHT3X class
 class Relay; // Forward declaration of Relay class
 #endif
 
+#ifdef BTCLASSIC_ENABLED
+#ifdef LORA_RECEIVER
+class BTClassic; // Forward declaration of BTClassic class
+#endif
+#endif
+
 class CommandProcessor {
 public:
     enum SensorType {
@@ -43,6 +49,9 @@ public:
         HUMI,
         RELAY_OPEN,
         RELAY_CLOSE,
+        BT_OPEN,
+        BT_CLOSE,
+        RESET,
         UNKNOWN
     };
 
@@ -64,6 +73,12 @@ private:
 #ifdef SHT3X_ENABLED
     SHT3X* sht3x; // Pointer to SHT3X object
 #endif
+#ifdef BTCLASSIC_ENABLED
+    #ifdef LORA_RECEIVER
+    BTClassic* btClassic;
+    #endif
+#endif
+
     std::vector<std::string> commandQueue; // FIFO queue for commands
     std::mutex queueMutex; // Mutex to protect access to the queue
 };

@@ -39,7 +39,8 @@
 class BTClassic {
 public:
     BTClassic(CommandProcessor* commandProcessor); // Constructor accepting CommandProcessor
-    void Init();
+    void Init(); // Initialize Bluetooth
+    void Close(); // Close Bluetooth
     void SendResponse(const std::string& response);
     void HandleLoraReceiverMode(const std::string& response); // Handle LORA_RECEIVER mode
     void HandleLoraSenderMode(const std::string& command);    // Handle LORA_SENDER mode

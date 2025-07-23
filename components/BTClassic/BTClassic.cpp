@@ -151,3 +151,41 @@ void BTClassic::EventHandler(esp_spp_cb_event_t event, esp_spp_cb_param_t *param
             break;
     }
 }
+
+void BTClassic::Close() 
+{
+    printf("Closing Bluetooth...\n");
+
+    // Uninitialize SPP
+    esp_err_t ret = esp_spp_deinit();
+    if (ret != ESP_OK) {
+        printf("Failed to deinitialize SPP: %s\n", esp_err_to_name(ret));
+    } else {
+        printf("SPP deinitialized successfully.\n");
+    }
+
+    // Disable and deinitialize Bluedroid stack
+    if (esp_bluedroid_get_status() == ESP_BLUEDROID_STATUS_ENABLED) {
+        esp_bluedroid_disable();
+        printf("Bluedroid disabled.\n");
+    }
+    if (esp_bluedroid_get_status() != ESP_BLUEDROID_STATUS_UNINITIALIZED) {
+        esp_bluedroid_deinit();
+        printf("Bluedroid deinitialized.\n");
+    }
+
+    // Disable and deinitialize Bluetooth controller
+    if (esp_bt_controller_get_status() == ESP_BT_CONTROLLER_STATUS_ENABLED) {
+        esp_bt_controller_disable();
+        printf("Bluetooth controller disabled.\n");
+    }
+    if (esp_bt_controller_get_status() != ESP_BT_CONTROLLER_STATUS_IDLE) {
+        esp_bt_controller_deinit();
+        printf("Bluetooth controller deinitialized.\n");
+    }
+
+    // Reset the connection handle
+    connectionHandle = 0;
+
+    printf("Bluetooth closed successfully.\n");
+}

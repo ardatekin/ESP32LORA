@@ -84,9 +84,12 @@ extern "C" void app_main(void)
     commandProcessor.SetRelay(&relay); // Inject Relay into CommandProcessor
 #endif
 
-    // Initialize Bluetooth and pass commandProcessor
+    // Initialize Bluetooth for Lora Sender and pass commandProcessor
+#ifdef LORA_SENDER
+    printf("Initializing Bluetooth for Lora Sender\n");
     BTClassic btClassic(&commandProcessor);
     btClassic.Init();
+#endif
 
     // Initialize Lora
     LoRa lora;
