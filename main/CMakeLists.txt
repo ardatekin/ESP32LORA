@@ -12,6 +12,7 @@ idf_component_register(
         "${PROJECT_ROOT}/components/Relay"
         "${PROJECT_ROOT}/components/BTClassic"
         "${PROJECT_ROOT}/components/SHT3X"
+        "${PROJECT_ROOT}/components/Voltage"
     REQUIRES 
         bt 
         nvs_flash 

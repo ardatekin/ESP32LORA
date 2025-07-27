@@ -62,3 +62,5 @@
     #pragma message("RELAY_ENABLED is defined")
     #define RELAY_PIN 25 // Define the relay pin number here
 #endif
+
+#define VOLTAGE_READER_PIN ADC1_CHANNEL_0 // ADC pin for voltage measurement

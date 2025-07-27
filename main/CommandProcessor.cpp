@@ -37,6 +37,8 @@
 #include "BTClassic.h"
 #endif
 
+#include "Voltage.h"
+
 CommandProcessor::CommandProcessor()
 #ifdef BTCLASSIC_ENABLED
     #ifdef LORA_RECEIVER
@@ -50,6 +52,7 @@ CommandProcessor::CommandProcessor()
 #ifdef SHT3X_ENABLED
     sht3x = nullptr;
 #endif
+    voltage = new Voltage(); // Initialize Voltage instance
 }
 
 CommandProcessor::~CommandProcessor()
@@ -65,6 +68,7 @@ CommandProcessor::~CommandProcessor()
 #ifdef SHT3X_ENABLED
     sht3x = nullptr; // SHT3X is not owned by CommandProcessor, so no deletion
 #endif
+    delete voltage; // Clean up Voltage instance
 }
 
 void CommandProcessor::Init()
@@ -95,6 +99,7 @@ CommandProcessor::SensorType CommandProcessor::ParseCommand(const std::string& c
     if (action == "GET") {
         if (sensorType == "TEMP") return TEMP;
         if (sensorType == "HUMI") return HUMI;
+        if (sensorType == "VOLTAGE") return VOLTAGE_READ; 
     } else if (action == "SET") {
         if (sensorType == "RELAY_OPEN") return RELAY_OPEN;
         if (sensorType == "RELAY_CLOSE") return RELAY_CLOSE;
@@ -181,9 +186,19 @@ std::string CommandProcessor::ProcessCommand(const std::string& command)
 #endif
 #endif
             return "Error: Bluetooth not initialized\n"; // Error response
+        case VOLTAGE_READ:
+            if (voltage) {
+                float batteryVoltage = voltage->Read();
+                char voltageBuffer[32];
+                snprintf(voltageBuffer, sizeof(voltageBuffer), "Battery Voltage: %.2fV\n", batteryVoltage);
+                return std::string(voltageBuffer); // Valid response
+            }
+            return "Error: Voltage sensor not initialized\n"; // Error response
         case RESET:
             printf("Rebooting ESP32...\n");
+#ifdef LORA_RECEIVER
             esp_restart(); // Reboot the ESP32
+#endif 
             return "ESP32 Rebooting...\n"; // Valid response
         default:
             return "Error: Invalid Command"; // Error response

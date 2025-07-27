@@ -42,6 +42,8 @@ class BTClassic; // Forward declaration of BTClassic class
 #endif
 #endif
 
+class Voltage; // Forward declaration of Voltage class
+
 class CommandProcessor {
 public:
     enum SensorType {
@@ -52,6 +54,7 @@ public:
         BT_OPEN,
         BT_CLOSE,
         RESET,
+        VOLTAGE_READ,
         UNKNOWN
     };
 
@@ -77,6 +80,9 @@ private:
     #ifdef LORA_RECEIVER
     BTClassic* btClassic;
     #endif
+
+    Voltage* voltage;
+
 #endif
 
     std::vector<std::string> commandQueue; // FIFO queue for commands
